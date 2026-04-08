@@ -1,0 +1,176 @@
+╔══════════════════════════════════════════════════════════════════╗
+║   CARD CLUB — COMPLETE DEPLOYMENT GUIDE                         ║
+║   GitHub → Railway → Play Online from Anywhere                  ║
+╚══════════════════════════════════════════════════════════════════╝
+
+FILES IN THIS FOLDER (upload ALL of them):
+  CardClub.html       ← the game
+  server_final.py     ← the server
+  requirements.txt    ← empty (no pip needed)
+  Procfile            ← tells Railway how to start
+  railway.toml        ← Railway config
+  render.yaml         ← Render.com config (alternative)
+  runtime.txt         ← Python version
+  README.md           ← project description
+  .gitignore          ← files to ignore
+
+════════════════════════════════════════════════════════════════════
+STEP 1 — CREATE GITHUB ACCOUNT (if you don't have one)
+════════════════════════════════════════════════════════════════════
+
+  1. Go to https://github.com
+  2. Click "Sign up"
+  3. Enter email, password, username
+  4. Verify your email
+  5. Done!
+
+════════════════════════════════════════════════════════════════════
+STEP 2 — CREATE A NEW GITHUB REPOSITORY
+════════════════════════════════════════════════════════════════════
+
+  1. After login, click the "+" button (top right)
+  2. Click "New repository"
+  3. Repository name: card-club  (or any name you like)
+  4. Set to: PUBLIC  ← important for Railway free tier
+  5. DO NOT check "Add README" (we have our own)
+  6. Click "Create repository"
+  7. You'll see an empty repo page — keep it open
+
+════════════════════════════════════════════════════════════════════
+STEP 3 — UPLOAD FILES TO GITHUB
+════════════════════════════════════════════════════════════════════
+
+EASY METHOD (no Git needed — just drag and drop):
+
+  1. On your empty repo page, click "uploading an existing file"
+     (you'll see this link on the page)
+
+  2. Drag and drop ALL these files at once:
+       • CardClub.html
+       • server_final.py
+       • requirements.txt
+       • Procfile
+       • railway.toml
+       • render.yaml
+       • runtime.txt
+       • README.md
+
+  3. At the bottom, type commit message: "Initial upload"
+
+  4. Click "Commit changes"
+
+  5. You should now see all files listed in your repo!
+
+════════════════════════════════════════════════════════════════════
+STEP 4 — DEPLOY TO RAILWAY (Free hosting)
+════════════════════════════════════════════════════════════════════
+
+  1. Go to https://railway.app
+  2. Click "Login" → "Login with GitHub"
+  3. Authorize Railway to access your GitHub
+  4. Click "New Project"
+  5. Click "Deploy from GitHub repo"
+  6. Find and select your "card-club" repo
+  7. Click "Deploy Now"
+
+  Railway will now:
+  ✓ Download your code from GitHub
+  ✓ Detect Python automatically
+  ✓ Run: python server_final.py
+  ✓ Give you a public URL!
+
+  8. Wait 1-2 minutes for deployment to finish
+  9. Click "Settings" → "Networking" → "Generate Domain"
+  10. Your URL will look like:
+      https://card-club-production.up.railway.app
+
+  11. Click that URL — your game is LIVE! 🎉
+
+════════════════════════════════════════════════════════════════════
+STEP 5 — SHARE WITH FRIENDS
+════════════════════════════════════════════════════════════════════
+
+  Copy your Railway URL and send it on WhatsApp:
+
+  "🃏 Come play Card Club with me!
+   Link: https://card-club-production.up.railway.app
+   
+   Open it in your phone browser — no download needed!
+   Create a room, share the code, and play Hearts or Hokm together!"
+
+  ✓ Works on mobile data
+  ✓ Works on any WiFi
+  ✓ Works in any country
+  ✓ No app install needed
+  ✓ Free hosting (500 hours/month free on Railway)
+
+════════════════════════════════════════════════════════════════════
+STEP 6 — UPDATE YOUR GAME (when you make changes)
+════════════════════════════════════════════════════════════════════
+
+  When you want to update (e.g. new CardClub.html version):
+
+  1. Go to your GitHub repo
+  2. Click on the file you want to update (e.g. CardClub.html)
+  3. Click the pencil ✏ icon (Edit)
+     OR drag the new file on top of the old one
+  4. Commit the change
+  5. Railway automatically detects the change and redeploys!
+     (Takes about 1-2 minutes)
+
+════════════════════════════════════════════════════════════════════
+ALTERNATIVE: RENDER.COM (also free)
+════════════════════════════════════════════════════════════════════
+
+  If Railway doesn't work, use Render:
+
+  1. Go to https://render.com → Sign up with GitHub
+  2. New → Web Service
+  3. Connect your GitHub repo
+  4. Settings:
+       Name: card-club
+       Environment: Python 3
+       Build Command: (leave empty)
+       Start Command: python server_final.py
+  5. Click "Create Web Service"
+  6. Wait for deploy → get URL
+
+  NOTE: Render free tier SLEEPS after 15 min of inactivity.
+        First person to open the link waits ~30 seconds for wake-up.
+        Railway does NOT sleep on free tier.
+
+════════════════════════════════════════════════════════════════════
+TROUBLESHOOTING
+════════════════════════════════════════════════════════════════════
+
+Problem: Railway deploy fails
+  → Check "Logs" tab in Railway dashboard for error messages
+  → Make sure Procfile contains: web: python server_final.py
+
+Problem: Game loads but can't connect (WebSocket error)
+  → This is the wss:// vs ws:// issue
+  → Railway uses HTTPS, so WebSocket must use wss://
+  → The server_final.py in this package handles this automatically
+
+Problem: "Module not found" error
+  → The server uses ZERO external libraries (only Python stdlib)
+  → If you see this error, check requirements.txt is empty
+
+Problem: Room code not working
+  → Make sure both players are using the SAME URL
+  → Railway URL must be the same for host and all players
+
+════════════════════════════════════════════════════════════════════
+COSTS
+════════════════════════════════════════════════════════════════════
+
+  Railway FREE tier: 500 hours/month ($0)
+  → Enough for ~16 hours/day of play
+  → Credit card NOT required
+  → Never sleeps (unlike Render)
+
+  Railway Hobby plan: $5/month
+  → Unlimited hours
+  → Custom domain (e.g. cardclub.yourdomain.com)
+
+════════════════════════════════════════════════════════════════════
